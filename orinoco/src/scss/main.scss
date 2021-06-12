@@ -1,0 +1,11 @@
+@import "./vendors/tailwind";
+
+@import "./base/fonts";
+@import "./base/reset";
+@import "./base/headings";
+@import "./layout/header";
+@import "./layout/main";
+@import "./layout/footer";
+
+@import "./pages/index";
+@import "./pages/product";
