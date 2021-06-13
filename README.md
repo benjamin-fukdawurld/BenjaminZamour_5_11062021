@@ -2,9 +2,27 @@
 
 Projet n°5 de la formation OCR DW - Construisez un site e-commerce
 
+## Get started
+
+```
+git clone ...
+git submodule update --init # pull the backend
+
+pushd JWDP5
+npm i # install packages
+popd
+pushd orinoco
+npm i # install packages
+popd
+pushd JWDP5
+npm start # start backend
+```
+
+Then all you need to do is open `dist/index.html`
+
 ## TODO
 
-- Tester l'API
+- Tester l'API ✓
 - Créer 4 pages
   - Une page de présentation des différents produits
     - Tous les produits devrons êtres présentés
