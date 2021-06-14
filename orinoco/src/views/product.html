@@ -1,0 +1,24 @@
+<%- include("utils/html",
+    {
+        head: {
+            title: "",
+            styles: [
+                { src: "css/main.css" }
+            ],
+            scripts: []
+        },
+        content: {
+            template: "../pages/product/content",
+            data: {
+                header: {},
+                footer: {},
+                scripts: [
+                    {
+                        module: true,
+                        src: "js/product.js"
+                    }
+                ]
+            }
+        }
+    })
+%>
