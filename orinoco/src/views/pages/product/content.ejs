@@ -1,0 +1,16 @@
+<%- include("../../components/header", header) %>
+<main>
+    <h1></h1>
+    <%- include("../../components/teddy", {}) %>
+    <input
+        type="number"
+        id="number-of-items"
+        class="number-of-items"
+        name="number-of-items"
+        min="1"
+        value="1"
+    />
+    <button id="add-to-cart-button" class="add-to-cart-button">Ajoutez au panier</button>
+</main>
+<%- include("../../components/footer", footer) %>
+<%- include("../../utils/script-list", {scripts}) %>
