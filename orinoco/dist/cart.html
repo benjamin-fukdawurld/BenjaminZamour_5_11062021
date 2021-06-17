@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+    <link href="css/main.css" rel="stylesheet" />
+
+
+
+
+
+
+
+    <title>Votre panier - Orinoco</title>
+</head>
+
+<body>
+    <header></header>
+
+    <main>
+        <h1>Mon panier</h1>
+        <section class="cart">
+            <h2 class="cart__item-list__title">Mes articles</h2>
+            <section class="cart__item-list"></section>
+        </section>
+        <template id="cart-item__template">
+            <section class="cart-item__container">
+                <article class="cart-item__info">
+                    <img class="cart-item__info__image" />
+                    <h2 class="cart-item__info__name"></h2>
+                    <p class="cart-item__info__color"></p>
+                    <p class="cart-item__info__price"></p>
+                </article>
+                <input type="number" class="cart-item__count" min="0"
+                    aria-label="Nombre d'articles" />
+                <input type="button" class="cart-item__update-price-button"
+                    title="Mettre à jour le prix " disabled />
+                <input type="button" class="cart-item__remove-item-button"
+                    title="Supprimer l'article" />
+                <p class="cart-item__total-price"></p>
+            </section>
+        </template>
+
+
+    </main>
+    <footer></footer>
+
+
+    <script type="module" src="js/cart.js">
+
+</script>
+
+
+</body>
+
+</html>
