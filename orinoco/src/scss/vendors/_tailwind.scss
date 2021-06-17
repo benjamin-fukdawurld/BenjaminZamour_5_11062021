@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+
+body {
+    @apply bg-purple-100 text-gray-700 flex flex-col min-h-screen;
+}
+
+@tailwind utilities;
