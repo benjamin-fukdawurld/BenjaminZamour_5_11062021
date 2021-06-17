@@ -1,0 +1,19 @@
+<template id="cart-item__template">
+    <section class="cart-item__container">
+        <article class="cart-item__info">
+            <img class="cart-item__info__image" />
+            <h2 class="cart-item__info__name"></h2>
+            <p class="cart-item__info__color"></p>
+            <p class="cart-item__info__price"></p>
+        </article>
+        <input type="number" class="cart-item__count" min="0" aria-label="Nombre d'articles" />
+        <input
+            type="button"
+            class="cart-item__update-price-button"
+            title="Mettre à jour le prix "
+            disabled
+        />
+        <input type="button" class="cart-item__remove-item-button" title="Supprimer l'article" />
+        <p class="cart-item__total-price"></p>
+    </section>
+</template>
