@@ -1,0 +1,18 @@
+$screenSizes: (
+    "xsmall": 324px,
+    "small": 767px,
+    "medium": 991px,
+    "large": 1199px,
+);
+
+@mixin for-device($size) {
+    @media screen and (max-width: map-get($screenSizes, $size)) {
+        @content;
+    }
+}
+
+@mixin for-device-gt($size) {
+    @media screen and (min-width: map-get($screenSizes, $size) + 1px) {
+        @content;
+    }
+}

@@ -1,0 +1,23 @@
+header {
+    padding: 1rem 2rem;
+}
+
+.nav-bar {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+
+    .home-button {
+        flex-grow: 5;
+
+        .logo {
+        }
+    }
+
+    .cart-button {
+        color: #883997;
+        svg {
+            width: 4rem;
+        }
+    }
+}

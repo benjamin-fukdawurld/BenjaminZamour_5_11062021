@@ -1,0 +1,26 @@
+@import "../utils/responsive";
+
+.search-bar {
+    position: relative;
+
+    &__input {
+        border: solid 2px purple;
+        color: purple;
+        border-radius: 1rem;
+        line-height: 2rem;
+        width: 100%;
+        padding-left: 2rem;
+    }
+
+    &__button {
+        color: purple;
+
+        position: absolute;
+        left: 0.5rem;
+        bottom: 0.3rem;
+    }
+
+    @include for-device(small) {
+        order: 3;
+    }
+}
