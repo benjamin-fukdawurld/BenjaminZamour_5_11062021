@@ -1,0 +1,19 @@
+header {
+    @apply shadow-lg mb-4;
+
+    .nav-bar {
+        @apply flex justify-between p-8;
+
+        .menu-button {
+            @apply md:h-12 md:w-12 h-8 w-8 hover:text-purple-700 transform duration-200 hover:scale-110 scale-100;
+        }
+
+        .home-button {
+            @apply font-logo md:text-6xl text-3xl hover:text-purple-700 transform duration-200 hover:scale-110 scale-100;
+        }
+
+        .cart-button {
+            @apply md:h-12 md:w-12 h-8 w-8 hover:text-purple-700 transform duration-200 hover:scale-110 scale-100;
+        }
+    }
+}
