@@ -1,0 +1,58 @@
+.teddy {
+    @apply grid md:grid-cols-2 md:grid-rows-1 grid-rows-2;
+
+    &__image {
+        @apply rounded-xl flex-shrink md:flex-shrink-0;
+    }
+
+    &__info {
+        @apply px-4;
+    }
+
+    &__name {
+        @apply font-semibold 2xl:text-2xl text-lg;
+    }
+
+    &__description {
+        @apply font-light 2xl:text-lg text-sm;
+    }
+
+    &__color-label {
+        @apply text-sm mr-4;
+    }
+
+    &__color-select {
+        @apply text-sm shadow-lg px-2 py-2 rounded-md border-purple-300 border-2 appearance-none w-36;
+
+        &__container {
+            @apply relative inline-block;
+        }
+
+        &__arrow {
+            @apply text-purple-900 absolute pointer-events-none;
+            width: 1.5rem;
+            right: 5%;
+            top: 25%;
+        }
+
+        * {
+            font-size: 1rem;
+        }
+    }
+
+    &__shipping {
+        @apply flex;
+
+        &__image {
+            @apply text-purple-900;
+        }
+
+        &__text {
+            @apply self-center pl-8;
+        }
+    }
+
+    &__price {
+        @apply font-bold text-green-700 text-right text-xl py-4;
+    }
+}
