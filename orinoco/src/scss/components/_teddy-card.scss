@@ -1,0 +1,29 @@
+.teddy-card {
+    @apply rounded-2xl shadow-md mt-8 max-w-xs bg-purple-200 h-72;
+    @apply transform duration-200 hover:scale-110 scale-100;
+
+    &:hover &__price {
+        @apply animate-bounce text-green-400;
+    }
+
+    &__image {
+        @apply shadow-md rounded-t-2xl h-3/4 w-full object-cover;
+        @apply border-purple-300 border-b-2 border-solid;
+    }
+
+    &__name {
+        @apply px-4 font-medium text-lg pt-2;
+    }
+
+    &__info {
+        @apply px-4 flex justify-between items-center pb-2;
+    }
+
+    &__description {
+        @apply font-light;
+    }
+
+    &__price {
+        @apply font-bold text-lg text-green-500;
+    }
+}
