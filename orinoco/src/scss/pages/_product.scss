@@ -10,13 +10,13 @@
     &__minus {
         @apply transform duration-200 hover:scale-125 scale-100 absolute;
         left: 5%;
-        top: 15%;
+        top: 20%;
     }
 
     &__plus {
         @apply transform duration-200 hover:scale-125 scale-100 absolute;
         right: 5%;
-        top: 15%;
+        top: 20%;
     }
 }
 
