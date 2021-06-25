@@ -1,0 +1,28 @@
+.cart {
+    &__item-list {
+        @apply flex flex-col px-4 shadow-lg rounded-lg mb-4;
+
+        min-height: 8rem;
+
+        &__title {
+            @apply px-4 font-medium text-lg pt-2;
+        }
+    }
+
+    &__total-price {
+        @apply text-green-500;
+
+        &__container {
+            @apply text-right font-semibold text-lg px-4;
+        }
+    }
+
+    &__order-button {
+        @apply bg-green-700 text-white py-2 px-8 text-center rounded-lg font-bold;
+        @apply transform duration-200 scale-100 hover:scale-110 inline-block;
+
+        &__container {
+            @apply text-center my-8;
+        }
+    }
+}
