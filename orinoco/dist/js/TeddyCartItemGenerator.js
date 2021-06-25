@@ -8,7 +8,9 @@ export default class TeddyCartItemGenerator extends AbstractTeddyGenerator {
     generate({ teddy, rootElm, color, count }) {
         this.hydrate({ teddy, rootElm, className: "cart-item" });
         this.componentProxy.count.value = count;
-        this.componentProxy["total-price"].textContent = count * teddy.price;
+        this.componentProxy["total-price"].textContent = `${((count * teddy.price) / 100).toFixed(
+            2
+        )}€`;
         this.hydrate({ teddy, rootElm, className: "cart-item__info" });
         this.initImageElm();
         this.initNameElm();
