@@ -1,6 +1,7 @@
 import { getTeddy } from "./utils.js";
 import TeddyGenerator from "./TeddyGenerator.js";
 import CartStorage from "./CartStorage.js";
+import ToastElement from "./components/ToastElement.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -38,21 +39,6 @@ class Controller {
         btn.addEventListener("click", (event) => {
             this.addToCart();
         });
-
-        let countContainer = document.getElementsByClassName("number-of-items__container")[0];
-        let input = countContainer.getElementsByClassName("number-of-items")[0];
-        document
-            .getElementsByClassName("number-of-items__minus")[0]
-            .addEventListener("mousedown", (event) => {
-                event.preventDefault();
-                input.value = Math.max(input.value - 1, 1);
-            });
-        document
-            .getElementsByClassName("number-of-items__plus")[0]
-            .addEventListener("mousedown", (event) => {
-                input.value++;
-                event.preventDefault();
-            });
     }
 
     init() {
@@ -62,9 +48,17 @@ class Controller {
     }
 
     addToCart() {
-        let count = document.getElementById("number-of-items");
+        let count = document.getElementById("number-of-items").input;
         let color = document.getElementById("color-select");
         this.#cart.modifyProductCount(this.#teddy._id, color.value, parseInt(count.value));
+        let toast = new ToastElement();
+        toast.setAttribute("type", "success");
+        toast.setAttribute(
+            "value",
+            `${count.value} article${count > 1 ? "s" : ""} ajouté${count > 1 ? "s" : ""} au panier`
+        );
+        document.getElementsByTagName("main")[0].appendChild(toast);
+        count.value = 1;
     }
 }
 
