@@ -1,29 +1,18 @@
 <template id="cart-item__template">
     <section class="cart-item">
-        <article class="cart-item__info">
-            <img class="cart-item__info__image" />
-            <div class="cart-item__info__text-container">
-                <h2 class="cart-item__info__name"></h2>
-                <p class="cart-item__info__color"></p>
-                <p class="cart-item__info__price"></p>
-            </div>
-        </article>
+        <a class="cart-item__link">
+            <article class="cart-item__info">
+                <img class="cart-item__info__image" />
+                <div class="cart-item__info__text-container">
+                    <h2 class="cart-item__info__name"></h2>
+                    <p class="cart-item__info__color"></p>
+                    <p class="cart-item__info__price"></p>
+                </div>
+            </article>
+        </a>
         <section class="cart-item__total-price__container">
             <div class="cart-item__buttons-container">
-                <span class="cart-item__count__container">
-                    <span class="cart-item__count__minus">
-                        <%- include("../icons/minus.svg") %>
-                    </span>
-                    <input
-                        type="number"
-                        class="cart-item__count"
-                        min="0"
-                        aria-label="Nombre d'articles"
-                    />
-                    <span class="cart-item__count__plus">
-                        <%- include("../icons/plus.svg", {}) %>
-                    </span>
-                </span>
+                <spinbox-element name="number-of-items" min="1" value="0"></spinbox-element>
                 <div class="flex justify-between items-center mx-4">
                     <button class="cart-item__remove-item-button" title="Supprimer l'article">
                         <%- include('../icons/trash.svg') %>
