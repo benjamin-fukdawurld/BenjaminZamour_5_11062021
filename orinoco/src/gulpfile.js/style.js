@@ -50,22 +50,7 @@ function cleancss() {
         .pipe(
             purgecss({
                 content: [process.env.outputDir + "/**/*.html", process.env.outputDir + "/**/*.js"],
-                safelist: [
-                    "md:text-6xl",
-                    "md:h-12",
-                    "md:w-12",
-                    "h-3/4",
-                    "w-1/3",
-                    "w-3/4",
-                    "hover:text-purple-700",
-                    "hover:scale-110",
-                    "hover:scale-125",
-                    "md:grid-cols-2",
-                    "md:grid-rows-1",
-                    "lg:mt-4",
-                    "2xl:text-2xl",
-                    "2xl:text-lg",
-                ],
+                safelist: ["spin-box__plus-button", "spin-box__minus-button"],
             })
         )
         .pipe(dest(process.env.outputDir + "/css"));
