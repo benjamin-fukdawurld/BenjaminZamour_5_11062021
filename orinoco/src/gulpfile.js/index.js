@@ -18,8 +18,8 @@ exports.images = images;
 exports.watch = function () {
     watch("./scss/**/*.scss", { ignoreInitial: false }, series(style, exports.cleancss));
     watch("./views/**/*", { ignoreInitial: false }, series(html, exports.cleancss));
-    watch("./resources/js/*.js", { ignoreInitial: false }, js);
-    watch("./scripts/*.js", { ignoreInitial: false }, js);
+    watch("./resources/js/**/*.js", { ignoreInitial: false }, js);
+    watch("./scripts/**/*.js", { ignoreInitial: false }, js);
     watch("./resources/images/*", { ignoreInitial: false }, images);
     watch("./resources/favicon.*", { ignoreInitial: false }, images);
 };

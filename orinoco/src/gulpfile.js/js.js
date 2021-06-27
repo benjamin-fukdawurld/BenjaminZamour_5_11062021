@@ -2,7 +2,7 @@ const { src, dest, series } = require("gulp");
 const minify = require("gulp-minify");
 
 function resources() {
-    return src(["./resources/js/*.js", "!./resources/js/*.test.js"])
+    return src(["./resources/js/**/*.js", "!./resources/js/**/*.test.js"])
         .pipe(
             minify({
                 ext: {
@@ -16,7 +16,7 @@ function resources() {
 }
 
 function scripts() {
-    return src(["./scripts/*.js", "!./scripts/*.test.js"]).pipe(
+    return src(["./scripts/**/*.js", "!./scripts/**/*.test.js"]).pipe(
         dest(process.env.outputDir + "/js")
     );
 }
