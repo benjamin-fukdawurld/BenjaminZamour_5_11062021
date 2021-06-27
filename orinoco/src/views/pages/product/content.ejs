@@ -2,19 +2,13 @@
 <main>
     <h1></h1>
     <%- include("../../components/teddy", {}) %>
-    <div class="flex flex-col justify-center items-center lg:mt-4">
-        <span class="number-of-items__container">
-            <span class="number-of-items__minus"> <%- include("../../icons/minus.svg") %> </span>
-            <input
-                type="number"
-                id="number-of-items"
-                class="number-of-items"
-                name="number-of-items"
-                min="1"
-                value="1"
-            />
-            <span class="number-of-items__plus"> <%- include("../../icons/plus.svg", {}) %> </span>
-        </span>
+    <div class="product-buttons flex flex-col justify-center items-center lg:mt-4">
+        <spinbox-element
+            id="number-of-items"
+            name="number-of-items"
+            min="1"
+            value="1"
+        ></spinbox-element>
         <button id="add-to-cart-button" class="add-to-cart-button">Ajoutez au panier</button>
     </div>
 </main>
