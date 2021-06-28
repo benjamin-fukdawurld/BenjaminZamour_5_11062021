@@ -1,0 +1,86 @@
+@keyframes expend {
+    0% {
+        transform: scaleY(0);
+    }
+
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes swipe {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.order-form {
+    position: relative;
+    animation: swipe 200ms ease-in-out both;
+    animation-play-state: paused;
+
+    .personnal-info,
+    .pay-info {
+        @apply grid grid-cols-2 px-8 max-w-max;
+
+        &__container {
+            @apply lg:flex lg:flex-col lg:items-center;
+        }
+
+        label {
+            @apply font-semibold block text-center mr-4 my-4;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="month"] {
+            @apply block my-4 px-4 py-2 bg-purple-200 rounded-md;
+
+            &:not(:focus):invalid {
+                @apply border-2 border-solid border-red-300;
+
+                &:not(:placeholder-shown) {
+                    @apply bg-red-200;
+                }
+            }
+
+            &:valid {
+                @apply border-2 border-solid border-green-300;
+            }
+        }
+    }
+
+    .personnal-info {
+        animation: expend 200ms ease-in-out reverse both;
+        animation-play-state: paused;
+    }
+
+    .pay-info {
+        animation: expend 200ms ease-in-out both;
+        animation-play-state: paused;
+        position: absolute;
+        z-index: -1;
+    }
+
+    .next-button {
+        @apply lg:flex lg:flex-col lg:items-center;
+        @apply bg-green-700 text-white py-2 px-8 text-center rounded-lg font-bold;
+        @apply transform duration-200 scale-100 inline-block my-4;
+
+        &:disabled {
+            @apply bg-gray-300 text-gray-600;
+        }
+
+        &:not(:disabled) {
+            @apply hover:scale-110;
+        }
+
+        &__container {
+            @apply flex flex-row justify-center;
+        }
+    }
+}
