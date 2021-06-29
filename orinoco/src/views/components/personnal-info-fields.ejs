@@ -1,0 +1,54 @@
+<div class="personnal-info__container">
+    <fieldset class="personnal-info" id="personnal-info">
+        <label>
+            Nom
+            <span class="text-red-800"> <abbr title="requis"> * </abbr> </span>&nbsp;:
+        </label>
+        <input type="text" id="lastName" name="lastName" tabindex="1" placeholder="..." required />
+        <label>
+            Prénom
+            <span class="text-red-800"><abbr title="requis">*</abbr></span
+            >&nbsp;:
+        </label>
+        <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            tabindex="2"
+            placeholder="..."
+            required
+        />
+        <label>
+            Adresse
+            <span class="text-red-800"><abbr title="requis">*</abbr></span
+            >&nbsp;:
+        </label>
+        <input type="text" id="address" name="address" tabindex="3" placeholder="..." required />
+        <label>
+            Code postal
+            <span class="text-red-800"><abbr title="requis">*</abbr></span
+            >&nbsp;:
+        </label>
+        <input
+            type="text"
+            id="zipcode"
+            name="zipcode"
+            pattern="[0-9]{5}"
+            tabindex="4"
+            placeholder="..."
+            required
+        />
+        <label>
+            Ville
+            <span class="text-red-800"><abbr title="requis">*</abbr></span
+            >&nbsp;:
+        </label>
+        <input type="text" id="city" name="city" tabindex="5" placeholder="..." required />
+        <label>
+            email
+            <span class="text-red-800"><abbr title="requis">*</abbr></span
+            >&nbsp;:
+        </label>
+        <input type="email" id="email" name="email" tabindex="6" placeholder="..." required />
+    </fieldset>
+</div>

@@ -1,0 +1,28 @@
+<%- include("utils/html",
+    {
+        head: {
+            title: "Votre panier - Orinoco",
+            styles: [
+                { src: "css/main.css" }
+            ],
+            scripts: []
+        },
+        content: {
+            template: "../pages/cart/content",
+            data: {
+                header: {},
+                footer: {},
+                scripts: [
+                    {
+                        module: true,
+                        src: "js/cart.js"
+                    },
+                    {
+                        module: true,
+                        src: "js/components/SpinBoxElement.js"
+                    }
+                ]
+            }
+        }
+    })
+%>

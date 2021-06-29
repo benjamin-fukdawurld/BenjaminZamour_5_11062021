@@ -3,9 +3,16 @@
 @import "./base/fonts";
 @import "./base/reset";
 @import "./base/headings";
+
 @import "./layout/header";
 @import "./layout/main";
 @import "./layout/footer";
 
+@import "./components/toast";
+@import "./components/spin-box";
+
 @import "./pages/index";
 @import "./pages/product";
+@import "./pages/cart";
+@import "./pages/order";
+@import "./pages/confirmation";

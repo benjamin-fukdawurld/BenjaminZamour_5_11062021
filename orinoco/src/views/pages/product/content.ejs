@@ -1,0 +1,16 @@
+<%- include("../../components/header", header) %>
+<main>
+    <h1></h1>
+    <%- include("../../components/teddy", {}) %>
+    <div class="product-buttons flex flex-col justify-center items-center lg:mt-4">
+        <spinbox-element
+            id="number-of-items"
+            name="number-of-items"
+            min="1"
+            value="1"
+        ></spinbox-element>
+        <button id="add-to-cart-button" class="add-to-cart-button">Ajoutez au panier</button>
+    </div>
+</main>
+<%- include("../../components/footer", footer) %> <%- include("../../utils/script-list", {scripts})
+%>

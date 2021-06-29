@@ -1,0 +1,14 @@
+<%- include("../../components/header", header) %>
+<main>
+    <h1>Votre commande est validé</h1>
+    <section class="confirmation">
+        <h2 class="confirmation__order-id">Commande <span id="orderId"></span></h2>
+        <p class="confirmation__text">
+            Merci <span id="firstName"></span> <span id="lastName"></span> pour votre commande.
+            <br />
+            Vous allez recevoir un mail de suivi de votre commande.
+        </p>
+    </section>
+</main>
+<%- include("../../components/footer", footer) %>
+<%- include("../../utils/script-list", {scripts}) %>

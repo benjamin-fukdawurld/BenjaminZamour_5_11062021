@@ -1,0 +1,41 @@
+<div class="pay-info__container">
+    <fieldset id="pay-info" class="pay-info">
+        <label>
+            Nom de la carte bancaire
+            <span class="text-red-800"> <abbr title="requis"> * </abbr> </span>&nbsp;:
+        </label>
+        <input type="text" id="ccname" name="ccname" tabindex="1" placeholder="..." />
+        <label>
+            Numéro de la cart
+            <span class="text-red-800"><abbr title="requis">*</abbr></span
+            >&nbsp;:
+        </label>
+        <input type="text" id="ccnum" name="ccnum" tabindex="2" placeholder="..." />
+        <label>
+            Date d'expiration
+            <span class="text-red-800"><abbr title="requis">*</abbr></span
+            >&nbsp;:
+        </label>
+        <input
+            type="month"
+            id="ccexpdate"
+            name="ccexpdate"
+            tabindex="2"
+            placeholder="..."
+            min="2021-06"
+        />
+        <label>
+            Cryptogramme visuel
+            <span class="text-red-800"><abbr title="requis">*</abbr></span
+            >&nbsp;:
+        </label>
+        <input
+            type="text"
+            id="cccode"
+            name="cccode"
+            pattern="[0-9]{3}"
+            tabindex="4"
+            placeholder="..."
+        />
+    </fieldset>
+</div>

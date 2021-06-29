@@ -1,0 +1,25 @@
+<template id="cart-item__template">
+    <section class="cart-item">
+        <a class="cart-item__link">
+            <article class="cart-item__info">
+                <img class="cart-item__info__image" />
+                <div class="cart-item__info__text-container">
+                    <h2 class="cart-item__info__name"></h2>
+                    <p class="cart-item__info__color"></p>
+                    <p class="cart-item__info__price"></p>
+                </div>
+            </article>
+        </a>
+        <section class="cart-item__total-price__container">
+            <div class="cart-item__buttons-container">
+                <spinbox-element name="number-of-items" min="1" value="0"></spinbox-element>
+                <div class="flex justify-between items-center mx-4">
+                    <button class="cart-item__remove-item-button" title="Supprimer l'article">
+                        <%- include('../icons/trash.svg') %>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <h3 class="cart-item__total-price"></h3>
+    </section>
+</template>
