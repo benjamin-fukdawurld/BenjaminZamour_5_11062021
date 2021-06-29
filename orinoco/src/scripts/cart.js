@@ -79,6 +79,15 @@ class Controller {
         document.getElementsByClassName("cart__total-price")[0].textContent = `${total.toFixed(
             2
         )}€`;
+
+        if (total === 0) {
+            let paragraph = document.createElement("p");
+            paragraph.textContent = "Le panier est vide.";
+            paragraph.classList.add("cart__item-list__empty-text");
+            itemList.appendChild(paragraph);
+            document.getElementsByClassName("cart__order-button")[0].style.display = "none";
+            return;
+        }
     }
 
     init() {

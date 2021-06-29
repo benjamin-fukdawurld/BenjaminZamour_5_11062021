@@ -41,6 +41,9 @@ export default class CartStorage {
             products[id][color] = count;
         } else {
             delete products[id][color];
+            if (Object.entries(products[id]).length === 0) {
+                delete products[id];
+            }
         }
 
         this.updateStorage(products);
