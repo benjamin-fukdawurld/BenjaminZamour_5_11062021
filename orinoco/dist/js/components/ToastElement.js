@@ -1,27 +1,53 @@
+/** @module js/components/ToastElement.js */
+
+import { generateSvg } from "./svg.js";
+
+/**
+ * Class representing a Toast web component.
+ * The component can be used in html files as 'toast-element'
+ */
 export default class ToastElement extends HTMLElement {
+    /**
+     * Create the Toast web component
+     *
+     * @description Create a Toast with an icon and a text paragraph.
+     * According to the type of the toast the icon and the background color will be different.
+     * The supported types are ["", "error", "success"], the default value is "".
+     */
     constructor() {
         super();
         this.textElm = document.createElement("p");
 
-        this.iconElm = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        this.iconElm.setAttribute("fill", "none");
-        this.iconElm.setAttribute("stroke", "currentColor");
-        this.iconElm.setAttribute("viewBox", "0 0 24 24");
-        this.iconElm.classList.add("h-6", "w-6");
+        this.iconElm = generateSvg();
         this.appendChild(this.iconElm);
         this.appendChild(this.textElm);
     }
 
+    /**
+     * Get the attributes observed by the web component.
+     * The observed attributes are ["value", "type"].
+     * @returns {string[]} the attributes' name.
+     */
     static get observedAttributes() {
         return ["value", "type"];
     }
 
+    /**
+     * Callback called when the element is added to the DOM.
+     * It suppress the element from the DOM after 4s.
+     */
     connectedCallback() {
         setTimeout(() => {
             this.remove();
         }, 4000);
     }
 
+    /**
+     * The callback used to update the component when an observed attribute changes.
+     * @param {string} name The name of the attribute.
+     * @param {string} oldValue The old value of the attribute.
+     * @param {string} newValue The new value of the attribute.
+     */
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue === newValue) {
             return;

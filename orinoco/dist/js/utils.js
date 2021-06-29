@@ -1,6 +1,13 @@
 /**
+ * @module js/utils.js
+ *
+ * @description Contains the API calls for OriTeddy
+ */
+
+/**
  * Gets the list of the teddies from the backend.
  * It is asynchronous and might return an error if fetch fails or if the server response is not ok.
+ * @async
  * @returns the list of the teddies.
  */
 export async function getTeddies() {
@@ -15,6 +22,7 @@ export async function getTeddies() {
 /**
  * Get a particular teddy given its id.
  * It is asynchronous and might return an error if fetch fails or if the server response is not ok.
+ * @async
  * @param {string} id The id of the teddy to get.
  * @returns The teddy with the given id.
  */
@@ -30,6 +38,7 @@ export async function getTeddy(id) {
 /**
  * Sends an order to the server.
  * It is asynchronous and might return an error if fetch fails or if the server response is not ok.
+ * @async
  * @param {Object} order The order object to send
  * @param {string} order.firstName The first name of the client
  * @param {string} order.lastName The last name of the client
