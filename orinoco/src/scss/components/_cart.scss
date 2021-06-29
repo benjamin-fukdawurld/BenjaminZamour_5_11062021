@@ -7,6 +7,10 @@
         &__title {
             @apply px-4 font-medium text-lg pt-2;
         }
+
+        &__empty-text {
+            @apply text-center w-full my-8;
+        }
     }
 
     &__total-price {
