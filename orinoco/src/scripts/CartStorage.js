@@ -66,4 +66,15 @@ export default class CartStorage {
 
         this.updateStorage(products);
     }
+
+    getProductIds() {
+        let products = Object.entries(this.products);
+        return products
+            .map(([id, colors]) => {
+                return Array(
+                    Object.entries(colors).reduce((idAcc, [color, count]) => idAcc + count, 0)
+                ).fill(id);
+            })
+            .flat();
+    }
 }
