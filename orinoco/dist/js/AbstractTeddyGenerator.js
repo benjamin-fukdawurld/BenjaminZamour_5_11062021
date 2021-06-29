@@ -1,10 +1,11 @@
 import { getComponentProxy } from "./ComponentProxy.js";
 
 /**
- * @abstract
  * Base class of Teddy HTML element representations
+ * @class AbstractTeddyGenerator
+ * @abstract
  */
-export default class AbstractTeddyGenerator {
+class AbstractTeddyGenerator {
     /** @member {Object} teddy The object to use to generate the HTML element. */
     teddy;
 
@@ -58,13 +59,15 @@ export default class AbstractTeddyGenerator {
     }
 
     /**
-     * @abstract
      * Abstract function, user should override it to generate the HTMLElement for the teddy object.
      * @param {Object} data The data used to generate the object representation.
      * @param {Object} data.teddy The teddy used to generate the object representation.
      * @param {HTMLElement} data.rootElm The root element of the HTML representation of the teddy object.
+     * @abstract
      */
     generate({ teddy, rootElm, ...props }) {
         throw new Error("generate is abstract, it must be override");
     }
 }
+
+export default AbstractTeddyGenerator;

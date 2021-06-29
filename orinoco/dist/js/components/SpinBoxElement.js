@@ -1,12 +1,13 @@
-/** @module js/components/SpinBoxElement.js */
+/** @module js/components/SpinBoxElement */
 
 import { generateSvg } from "./svg.js";
 
 /**
  * Class representing a SpinBox web component.
  * The component can be used in html files as 'spinbox-element'
+ * @extends HTMLElement
  */
-export default class SpinBoxElement extends HTMLElement {
+class SpinBoxElement extends HTMLElement {
     #inputElm;
     #minusButton;
     #plusButton;
@@ -87,3 +88,5 @@ export default class SpinBoxElement extends HTMLElement {
 }
 
 customElements.define("spinbox-element", SpinBoxElement);
+
+export default SpinBoxElement;

@@ -8,4 +8,4 @@ orderId.textContent = urlParams.get("orderId");
 firstName.textContent = urlParams.get("firstName");
 lastName.textContent = urlParams.get("lastName");
 
-localStorage.removeItem("orinoco_cart");
+localStorage.removeItem("orinoco_cart"); // Clean the cart

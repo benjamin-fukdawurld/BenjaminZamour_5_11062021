@@ -1,12 +1,13 @@
-/** @module js/components/ToastElement.js */
+/** @module js/components/ToastElement */
 
 import { generateSvg } from "./svg.js";
 
 /**
  * Class representing a Toast web component.
  * The component can be used in html files as 'toast-element'
+ * @extends HTMLElement
  */
-export default class ToastElement extends HTMLElement {
+class ToastElement extends HTMLElement {
     /**
      * Create the Toast web component
      *
@@ -91,3 +92,5 @@ export default class ToastElement extends HTMLElement {
 }
 
 customElements.define("toast-element", ToastElement);
+
+export default ToastElement;

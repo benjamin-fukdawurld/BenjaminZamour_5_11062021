@@ -1,4 +1,4 @@
-/** @module js/ComponentProxy.js */
+/** @module js/ComponentProxy */
 
 /**
  * Helper function to generate a getter for a component proxy.

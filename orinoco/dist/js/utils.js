@@ -1,8 +1,4 @@
-/**
- * @module js/utils.js
- *
- * @description Contains the API calls for OriTeddy
- */
+/** @module js/utils */
 
 /**
  * Gets the list of the teddies from the backend.

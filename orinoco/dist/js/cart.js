@@ -2,15 +2,19 @@ import { getTeddy } from "./utils.js";
 import TeddyCartItemGenerator from "./TeddyCartItemGenerator.js";
 import CartStorage from "./CartStorage.js";
 
-const cartItemTemplate = document.getElementById("cart-item__template");
-if (!cartItemTemplate) {
-    throw new Error("cart-item__template not found");
-}
-
+/**
+ * Represents the controller of the cart page
+ */
 class Controller {
     #cart;
     #teddies;
     #itemListElm;
+    #cartItemTemplateElm;
+
+    /**
+     * Creates a controller for the cart page
+     * @param {CartStorage} cart The cart storage management object
+     */
     constructor(cart) {
         this.#cart = cart;
         this.#itemListElm = document.getElementsByClassName("cart__item-list");
@@ -18,8 +22,17 @@ class Controller {
             throw new Error("cart__item-list not found");
         }
         this.#itemListElm = this.#itemListElm[0];
+
+        this.#cartItemTemplateElm = document.getElementById("cart-item__template");
+        if (!this.#cartItemTemplateElm) {
+            throw new Error("cart-item__template not found");
+        }
     }
 
+    /**
+     * Initializes the cart item list, fill it with all the product selected and connect the
+     * products' change event to a callback to update the total price and the page.
+     */
     initItemListElm() {
         const generator = new TeddyCartItemGenerator();
         let products = Object.entries(this.#cart.products);
@@ -45,7 +58,8 @@ class Controller {
                     this.#itemListElm.appendChild(
                         generator.generate({
                             teddy: this.#teddies[id],
-                            rootElm: cartItemTemplate.content.firstElementChild.cloneNode(true),
+                            rootElm:
+                                this.#cartItemTemplateElm.content.firstElementChild.cloneNode(true),
                             color,
                             count,
                         })
@@ -71,6 +85,9 @@ class Controller {
         });
     }
 
+    /**
+     * Update the total price of the cart + hide the order button if the cart is empty.
+     */
     updateTotalPrice() {
         let prices = document.getElementsByClassName("cart-item__total-price");
         let total = 0;
@@ -92,6 +109,9 @@ class Controller {
         }
     }
 
+    /**
+     * Initializes the controller
+     */
     init() {
         this.initItemListElm();
     }
