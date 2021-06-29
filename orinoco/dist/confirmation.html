@@ -16,7 +16,7 @@
 
 
 
-    <title></title>
+    <title>Commande Validé ! - Orinoco</title>
 </head>
 
 <body>
@@ -42,46 +42,17 @@
     </header>
 
     <main>
-        <h1></h1>
-        <article class="teddy">
-            <img class="teddy__image" />
-            <section class="teddy__info">
-                <h2 class="teddy__name"></h2>
-                <p class="teddy__description"></p>
-                <label for="color-select" class="teddy__color-label">Couleur</label>
-                <div class="teddy__color-select__container">
-                    <select name="color-select" id="color-select" class="teddy__color-select">
-                    </select>
-                    <span class="teddy__color-select__arrow">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 9l-7 7-7-7" />
-                        </svg>
-
-                    </span>
-                </div>
-                <div class="teddy__shipping">
-                    <span class="teddy__shipping__image">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path
-                                d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
-                        </svg>
-                    </span>
-                    <p class="teddy__shipping__text">Livraison gratuite sous 48h</p>
-                </div>
-                <p class="teddy__price"></p>
-            </section>
-        </article>
-
-        <div class="product-buttons flex flex-col justify-center items-center lg:mt-4">
-            <spinbox-element id="number-of-items" name="number-of-items" min="1" value="1">
-            </spinbox-element>
-            <button id="add-to-cart-button" class="add-to-cart-button">Ajoutez au panier</button>
-        </div>
+        <h1>Votre commande est validé</h1>
+        <section class="confirmation">
+            <h2 class="confirmation__order-id">Commande <span id="orderId"></span>
+            </h2>
+            <p class="confirmation__text">
+                Merci <span id="firstName"></span>
+                <span id="lastName"></span> pour votre commande.
+                <br />
+                Vous allez recevoir un mail de suivi de votre commande.
+            </p>
+        </section>
     </main>
     <footer>
         <div class="footer-links">
@@ -143,12 +114,8 @@
         </div>
     </footer>
 
-    <script type="module" src="js/product.js">
 
-</script>
-
-
-    <script type="module" src="js/components/SpinBoxElement.js">
+    <script type="module" src="js/confirmation.js">
 
 </script>
 

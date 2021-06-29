@@ -44,8 +44,16 @@
     <main>
         <h1>Mon panier</h1>
         <section class="cart">
-            <h2 class="cart__item-list__title">Mes articles</h2>
-            <section class="cart__item-list"></section>
+            <section class="cart__item-list">
+                <h2 class="cart__item-list__title">Mes articles</h2>
+            </section>
+            <section class="cart__total-price__container">
+                <p>Total : <span class="cart__total-price">0.0€</span>
+                </p>
+            </section>
+            <section class="cart__order-button__container">
+                <a class="cart__order-button" href="order.html">Commander</a>
+            </section>
         </section>
         <template id="cart-item__template">
             <section class="cart-item">
@@ -148,7 +156,7 @@
 </script>
 
 
-    <script type="module" src="js/components/SpinBox.js">
+    <script type="module" src="js/components/SpinBoxElement.js">
 
 </script>
 
