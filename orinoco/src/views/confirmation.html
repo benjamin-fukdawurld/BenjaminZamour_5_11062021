@@ -1,0 +1,24 @@
+<%- include("utils/html",
+    {
+        head: {
+            title: "Commande Validé ! - Orinoco",
+            styles: [
+                { src: "css/main.css" }
+            ],
+            scripts: []
+        },
+        content: {
+            template: "../pages/confirmation/content",
+            data: {
+                header: {},
+                footer: {},
+                scripts: [
+                    {
+                        module: true,
+                        src: "js/confirmation.js"
+                    }
+                ]
+            }
+        }
+    })
+%>
