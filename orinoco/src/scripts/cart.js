@@ -22,16 +22,25 @@ class Controller {
 
     initItemListElm() {
         const generator = new TeddyCartItemGenerator();
-        let products = this.#cart.products;
+        let products = Object.entries(this.#cart.products);
+        if (products.length === 0) {
+            let paragraph = document.createElement("p");
+            paragraph.textContent = "Le panier est vide.";
+            paragraph.classList.add("cart__item-list__empty-text");
+            itemList.appendChild(paragraph);
+            document.getElementsByClassName("cart__order-button")[0].style.display = "none";
+            return;
+        }
+
         this.#teddies = {};
         Promise.allSettled(
-            Object.entries(products).map(([id]) => {
+            products.map(([id]) => {
                 return getTeddy(id).then((teddy) => {
                     this.#teddies[id] = teddy;
                 });
             })
         ).then(() => {
-            for (const [id, colors] of Object.entries(products)) {
+            for (const [id, colors] of products) {
                 for (const [color, count] of Object.entries(colors)) {
                     itemList.appendChild(
                         generator.generate({
