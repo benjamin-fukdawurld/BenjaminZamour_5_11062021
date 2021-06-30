@@ -91,5 +91,12 @@ class Controller {
     }
 }
 
-const controller = new Controller(await getTeddy(urlParams.get("id")), new CartStorage());
-controller.init();
+try {
+    const controller = new Controller(await getTeddy(urlParams.get("id")), new CartStorage());
+    controller.init();
+} catch (err) {
+    let toast = new ToastElement();
+    toast.setAttribute("type", "error");
+    toast.setAttribute("value", err);
+    document.getElementsByTagName("body")[0].appendChild(toast);
+}

@@ -1,5 +1,6 @@
 import { orderTeddy } from "./utils.js";
 import CartStorage from "./CartStorage.js";
+import ToastElement from "./components/ToastElement.js";
 
 /**
  * Controller for the product page
@@ -51,9 +52,16 @@ class Controller {
                     city,
                     email,
                     products: storage.getProductIds(),
-                }).then((res) => {
-                    window.location = `confirmation.html?firstName=${res.contact.firstName}&lastName=${res.contact.lastName}&orderId=${res.orderId}`;
-                }),
+                })
+                    .then((res) => {
+                        window.location = `confirmation.html?firstName=${res.contact.firstName}&lastName=${res.contact.lastName}&orderId=${res.orderId}`;
+                    })
+                    .catch((err) => {
+                        let toast = new ToastElement();
+                        toast.setAttribute("type", "error");
+                        toast.setAttribute("value", err);
+                        document.getElementsByTagName("body")[0].appendChild(toast);
+                    }),
             1000
         );
     }
@@ -113,5 +121,12 @@ class Controller {
     }
 }
 
-let controller = new Controller();
-controller.init();
+try {
+    let controller = new Controller();
+    controller.init();
+} catch (err) {
+    let toast = new ToastElement();
+    toast.setAttribute("type", "error");
+    toast.setAttribute("value", err);
+    document.getElementsByTagName("body")[0].appendChild(toast);
+}

@@ -1,9 +1,13 @@
+/** @module js/cart */
+
 import { getTeddy } from "./utils.js";
 import TeddyCartItemGenerator from "./TeddyCartItemGenerator.js";
 import CartStorage from "./CartStorage.js";
 
+import ToastElement from "./components/ToastElement.js";
+
 /**
- * Represents the controller of the cart page
+ * Represents the controller of the cart page.
  */
 class Controller {
     #cart;
@@ -12,8 +16,8 @@ class Controller {
     #cartItemTemplateElm;
 
     /**
-     * Creates a controller for the cart page
-     * @param {CartStorage} cart The cart storage management object
+     * Creates a controller for the cart page.
+     * @param {CartStorage} cart The cart storage management object.
      */
     constructor(cart) {
         this.#cart = cart;
@@ -30,6 +34,77 @@ class Controller {
     }
 
     /**
+     * Get all necessary teddies according to the product ids in the cart
+     * @param {Object} products The products in the cart.
+     * @returns A promise resolved when all getTeddy() promises are settled.
+     */
+    getTeddies(products) {
+        return Promise.allSettled(
+            products.map(([id]) => {
+                return getTeddy(id)
+                    .then((teddy) => {
+                        this.#teddies[id] = teddy;
+                    })
+                    .catch((err) => {
+                        let toast = new ToastElement();
+                        toast.setAttribute("type", "error");
+                        toast.setAttribute("value", err);
+                        document.getElementsByTagName("body")[0].appendChild(toast);
+                    });
+            })
+        );
+    }
+
+    /**
+     * Populates the cart with the teddies representation.
+     */
+    generateCartItems() {
+        for (const [id, colors] of products) {
+            for (const [color, count] of Object.entries(colors)) {
+                this.#itemListElm.appendChild(
+                    generator.generate({
+                        teddy: this.#teddies[id],
+                        rootElm:
+                            this.#cartItemTemplateElm.content.firstElementChild.cloneNode(true),
+                        color,
+                        count,
+                    })
+                );
+            }
+        }
+    }
+
+    /**
+     * Connects the spinboxes and remove buttons to the appropriate callbacks
+     */
+    bindElements() {
+        for (let spin of this.#itemListElm.getElementsByTagName("spinbox-element")) {
+            spin.addEventListener("change", () => {
+                this.updateCart();
+            });
+        }
+
+        for (let button of this.#itemListElm.getElementsByClassName(
+            "cart-item__remove-item-button"
+        )) {
+            button.addEventListener("click", () => {
+                this.updateCart();
+            });
+        }
+    }
+
+    /**
+     * Hode the command button and add a text to cart items list when the cart is empty
+     */
+    handleCartEmpty() {
+        let paragraph = document.createElement("p");
+        paragraph.textContent = "Le panier est vide.";
+        paragraph.classList.add("cart__item-list__empty-text");
+        this.#itemListElm.appendChild(paragraph);
+        document.getElementsByClassName("cart__order-button")[0].style.display = "none";
+    }
+
+    /**
      * Initializes the cart item list, fill it with all the product selected and connect the
      * products' change event to a callback to update the total price and the page.
      */
@@ -37,58 +112,29 @@ class Controller {
         const generator = new TeddyCartItemGenerator();
         let products = Object.entries(this.#cart.products);
         if (products.length === 0) {
-            let paragraph = document.createElement("p");
-            paragraph.textContent = "Le panier est vide.";
-            paragraph.classList.add("cart__item-list__empty-text");
-            this.#itemListElm.appendChild(paragraph);
-            document.getElementsByClassName("cart__order-button")[0].style.display = "none";
+            this.handleCartEmpty();
             return;
         }
 
         this.#teddies = {};
-        Promise.allSettled(
-            products.map(([id]) => {
-                return getTeddy(id).then((teddy) => {
-                    this.#teddies[id] = teddy;
-                });
+        this.getTeddies(products)
+            .then(() => {
+                this.generateCartItems(products);
+                this.bindElements();
+                this.updateCart();
             })
-        ).then(() => {
-            for (const [id, colors] of products) {
-                for (const [color, count] of Object.entries(colors)) {
-                    this.#itemListElm.appendChild(
-                        generator.generate({
-                            teddy: this.#teddies[id],
-                            rootElm:
-                                this.#cartItemTemplateElm.content.firstElementChild.cloneNode(true),
-                            color,
-                            count,
-                        })
-                    );
-                }
-            }
-
-            for (let spin of this.#itemListElm.getElementsByTagName("spinbox-element")) {
-                spin.addEventListener("change", () => {
-                    this.updateTotalPrice();
-                });
-            }
-
-            for (let button of this.#itemListElm.getElementsByClassName(
-                "cart-item__remove-item-button"
-            )) {
-                button.addEventListener("click", () => {
-                    this.updateTotalPrice();
-                });
-            }
-
-            this.updateTotalPrice();
-        });
+            .catch((err) => {
+                let toast = new ToastElement();
+                toast.setAttribute("type", "error");
+                toast.setAttribute("value", err);
+                document.getElementsByTagName("body")[0].appendChild(toast);
+            });
     }
 
     /**
-     * Update the total price of the cart + hide the order button if the cart is empty.
+     * Update the total price of the cart and hide the order button if the cart is empty.
      */
-    updateTotalPrice() {
+    updateCart() {
         let prices = document.getElementsByClassName("cart-item__total-price");
         let total = 0;
         for (let price of prices) {
@@ -100,12 +146,7 @@ class Controller {
         )}€`;
 
         if (total === 0) {
-            let paragraph = document.createElement("p");
-            paragraph.textContent = "Le panier est vide.";
-            paragraph.classList.add("cart__item-list__empty-text");
-            this.#itemListElm.appendChild(paragraph);
-            document.getElementsByClassName("cart__order-button")[0].style.display = "none";
-            return;
+            this.handleCartEmpty();
         }
     }
 
@@ -117,5 +158,12 @@ class Controller {
     }
 }
 
-const controller = new Controller(new CartStorage());
-controller.init();
+try {
+    const controller = new Controller(new CartStorage());
+    controller.init();
+} catch (err) {
+    let toast = new ToastElement();
+    toast.setAttribute("type", "error");
+    toast.setAttribute("value", err);
+    document.getElementsByTagName("body")[0].appendChild(toast);
+}

@@ -2,6 +2,8 @@ import { getTeddy } from "./utils.js";
 import TeddyCartItemGenerator from "./TeddyCartItemGenerator.js";
 import CartStorage from "./CartStorage.js";
 
+import ToastElement from "./components/ToastElement.js";
+
 /**
  * Represents the controller of the cart page
  */
@@ -48,41 +50,57 @@ class Controller {
         this.#teddies = {};
         Promise.allSettled(
             products.map(([id]) => {
-                return getTeddy(id).then((teddy) => {
-                    this.#teddies[id] = teddy;
-                });
+                return getTeddy(id)
+                    .then((teddy) => {
+                        this.#teddies[id] = teddy;
+                    })
+                    .catch((err) => {
+                        let toast = new ToastElement();
+                        toast.setAttribute("type", "error");
+                        toast.setAttribute("value", err);
+                        document.getElementsByTagName("body")[0].appendChild(toast);
+                    });
             })
-        ).then(() => {
-            for (const [id, colors] of products) {
-                for (const [color, count] of Object.entries(colors)) {
-                    this.#itemListElm.appendChild(
-                        generator.generate({
-                            teddy: this.#teddies[id],
-                            rootElm:
-                                this.#cartItemTemplateElm.content.firstElementChild.cloneNode(true),
-                            color,
-                            count,
-                        })
-                    );
+        )
+            .then(() => {
+                for (const [id, colors] of products) {
+                    for (const [color, count] of Object.entries(colors)) {
+                        this.#itemListElm.appendChild(
+                            generator.generate({
+                                teddy: this.#teddies[id],
+                                rootElm:
+                                    this.#cartItemTemplateElm.content.firstElementChild.cloneNode(
+                                        true
+                                    ),
+                                color,
+                                count,
+                            })
+                        );
+                    }
                 }
-            }
 
-            for (let spin of this.#itemListElm.getElementsByTagName("spinbox-element")) {
-                spin.addEventListener("change", () => {
-                    this.updateTotalPrice();
-                });
-            }
+                for (let spin of this.#itemListElm.getElementsByTagName("spinbox-element")) {
+                    spin.addEventListener("change", () => {
+                        this.updateTotalPrice();
+                    });
+                }
 
-            for (let button of this.#itemListElm.getElementsByClassName(
-                "cart-item__remove-item-button"
-            )) {
-                button.addEventListener("click", () => {
-                    this.updateTotalPrice();
-                });
-            }
+                for (let button of this.#itemListElm.getElementsByClassName(
+                    "cart-item__remove-item-button"
+                )) {
+                    button.addEventListener("click", () => {
+                        this.updateTotalPrice();
+                    });
+                }
 
-            this.updateTotalPrice();
-        });
+                this.updateTotalPrice();
+            })
+            .catch((err) => {
+                let toast = new ToastElement();
+                toast.setAttribute("type", "error");
+                toast.setAttribute("value", err);
+                document.getElementsByTagName("body")[0].appendChild(toast);
+            });
     }
 
     /**
@@ -117,5 +135,12 @@ class Controller {
     }
 }
 
-const controller = new Controller(new CartStorage());
-controller.init();
+try {
+    const controller = new Controller(new CartStorage());
+    controller.init();
+} catch (err) {
+    let toast = new ToastElement();
+    toast.setAttribute("type", "error");
+    toast.setAttribute("value", err);
+    document.getElementsByTagName("body")[0].appendChild(toast);
+}
