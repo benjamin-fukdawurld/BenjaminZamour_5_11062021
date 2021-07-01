@@ -58,7 +58,8 @@ class Controller {
     /**
      * Populates the cart with the teddies representation.
      */
-    generateCartItems() {
+    generateCartItems(products) {
+        const generator = new TeddyCartItemGenerator();
         for (const [id, colors] of products) {
             for (const [color, count] of Object.entries(colors)) {
                 this.#itemListElm.appendChild(
@@ -109,7 +110,6 @@ class Controller {
      * products' change event to a callback to update the total price and the page.
      */
     initItemListElm() {
-        const generator = new TeddyCartItemGenerator();
         let products = Object.entries(this.#cart.products);
         if (products.length === 0) {
             this.handleCartEmpty();
