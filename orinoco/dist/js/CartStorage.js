@@ -44,11 +44,16 @@ export default class CartStorage {
      * @returns {number} The number of products for the given id and the given color if any.
      */
     getProductCount(id, color = null) {
-        if (color) {
-            return this.products[id][color];
+        const products = this.products;
+        if(!products[id]) {
+            return 0;
         }
 
-        return this.products[id].reduce((count, [color, currentCount]) => {
+        if (color) {
+            return products[id][color] ?? 0;
+        }
+
+        return products[id].reduce((count, [currentColor, currentCount]) => {
             return count + currentCount;
         }, 0);
     }
@@ -57,9 +62,11 @@ export default class CartStorage {
      * Sets the number of products for the given id and the given color.
      * @param {string} id The id of the products to count.
      * @param {string} color The color of the product to count.
-     * @param {number} count The number to set to the product list.
+     * @param {number} count The number to set to the product list, if count < 0 it will be considered as 0.
      */
     setProductCount(id, color, count) {
+        count = Math.max(count, 0);
+
         let products = this.products;
         if (!products[id]) {
             if (count !== 0) {
@@ -92,20 +99,7 @@ export default class CartStorage {
             return;
         }
 
-        let products = this.products;
-        if (!products[id]) {
-            products[id] = {
-                [color]: count,
-            };
-        } else if (!products[id][color]) {
-            products[id][color] = count;
-        } else {
-            products[id][color] += count;
-        }
-
-        this.#storage.setItem("orinoco_cart", JSON.stringify(products));
-
-        this.updateStorage(products);
+        this.setProductCount(id, color, this.getProductCount(id, color) + count);
     }
 
     /**
