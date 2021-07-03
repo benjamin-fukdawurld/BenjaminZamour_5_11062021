@@ -11,8 +11,8 @@ const urlParams = new URLSearchParams(window.location.search);
  * Controller for the product page
  */
 class Controller {
-    #teddy;
-    #cart;
+    teddy;
+    cart;
 
     /**
      * Creat a Controller for the product page
@@ -20,8 +20,8 @@ class Controller {
      * @param {CartStorage} cart The cart storage management object
      */
     constructor(teddy, cart) {
-        this.#teddy = teddy;
-        this.#cart = cart;
+        this.teddy = teddy;
+        this.cart = cart;
     }
 
     /**
@@ -29,13 +29,13 @@ class Controller {
      * @throws An error if there is no h1 tag on the page.
      */
     initTitles() {
-        document.title = `${this.#teddy.name} l'ourson - Orinoco teddies`;
+        document.title = `${this.teddy.name} l'ourson - Orinoco teddies`;
         let heading = document.getElementsByTagName("h1");
         if (!heading || heading.length < 1) {
             throw new Error("h1 not found");
         }
 
-        heading[0].textContent = this.#teddy.name;
+        heading[0].textContent = this.teddy.name;
     }
 
     /**
@@ -51,7 +51,7 @@ class Controller {
             throw new Error("teddy not found");
         }
 
-        generator.generate({ teddy: this.#teddy, rootElm: elm[0] });
+        generator.generate({ teddy: this.teddy, rootElm: elm[0] });
     }
 
     /**
@@ -79,7 +79,7 @@ class Controller {
     addToCart() {
         let count = document.getElementById("number-of-items").input;
         let color = document.getElementById("color-select");
-        this.#cart.modifyProductCount(this.#teddy._id, color.value, parseInt(count.value));
+        this.cart.modifyProductCount(this.teddy._id, color.value, parseInt(count.value));
         let toast = new ToastElement();
         toast.setAttribute("type", "success");
         toast.setAttribute(

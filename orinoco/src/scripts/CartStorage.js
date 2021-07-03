@@ -6,14 +6,14 @@
  * JSON with "orinoco_cart" as key.
  */
 export default class CartStorage {
-    #storage;
+    storage;
 
     /**
      * Creates a CartStorage.
      * @param {Storage} storage The system used to store the list of the products in the cart.
      */
     constructor(storage = localStorage) {
-        this.#storage = storage;
+        this.storage = storage;
     }
 
     /**
@@ -21,7 +21,7 @@ export default class CartStorage {
      * @returns {Object} The list of products.
      */
     get products() {
-        const productsStr = this.#storage.getItem("orinoco_cart");
+        const productsStr = this.storage.getItem("orinoco_cart");
         if (!productsStr) {
             return {};
         }
@@ -34,7 +34,7 @@ export default class CartStorage {
      * @param {Object} products The value to set to the cart storage.
      */
     updateStorage(products) {
-        this.#storage.setItem("orinoco_cart", JSON.stringify(products));
+        this.storage.setItem("orinoco_cart", JSON.stringify(products));
     }
 
     /**
@@ -45,7 +45,7 @@ export default class CartStorage {
      */
     getProductCount(id, color = null) {
         const products = this.products;
-        if(!products[id]) {
+        if (!products[id]) {
             return 0;
         }
 

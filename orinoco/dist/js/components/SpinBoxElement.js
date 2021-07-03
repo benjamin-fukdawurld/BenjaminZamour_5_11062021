@@ -8,9 +8,9 @@ import { generateSvg } from "./svg.js";
  * @extends HTMLElement
  */
 class SpinBoxElement extends HTMLElement {
-    #inputElm;
-    #minusButton;
-    #plusButton;
+    inputElm;
+    minusButton;
+    plusButton;
 
     /**
      * Create the SpinBox web component
@@ -21,36 +21,36 @@ class SpinBoxElement extends HTMLElement {
     constructor() {
         super();
 
-        this.#inputElm = document.createElement("input");
-        this.#inputElm.setAttribute("type", "number");
+        this.inputElm = document.createElement("input");
+        this.inputElm.setAttribute("type", "number");
 
-        this.#minusButton = document.createElement("button");
-        this.#minusButton.appendChild(generateSvg("M20 12H4"));
-        this.#minusButton.addEventListener("mousedown", (event) => {
+        this.minusButton = document.createElement("button");
+        this.minusButton.appendChild(generateSvg("M20 12H4"));
+        this.minusButton.addEventListener("mousedown", (event) => {
             event.preventDefault();
-            if (this.min && this.#inputElm.value <= this.min) {
+            if (this.min && this.inputElm.value <= this.min) {
                 return;
             }
 
-            --this.#inputElm.value;
+            --this.inputElm.value;
             this.dispatchEvent(new CustomEvent("change"));
         });
 
-        this.#plusButton = document.createElement("button");
-        this.#plusButton.appendChild(generateSvg("M12 6v6m0 0v6m0-6h6m-6 0H6"));
-        this.#plusButton.addEventListener("mousedown", (event) => {
+        this.plusButton = document.createElement("button");
+        this.plusButton.appendChild(generateSvg("M12 6v6m0 0v6m0-6h6m-6 0H6"));
+        this.plusButton.addEventListener("mousedown", (event) => {
             event.preventDefault();
-            if (this.max && this.#inputElm.value >= this.max) {
+            if (this.max && this.inputElm.value >= this.max) {
                 return;
             }
 
-            ++this.#inputElm.value;
+            ++this.inputElm.value;
             this.dispatchEvent(new CustomEvent("change"));
         });
 
-        this.appendChild(this.#minusButton);
-        this.appendChild(this.#inputElm);
-        this.appendChild(this.#plusButton);
+        this.appendChild(this.minusButton);
+        this.appendChild(this.inputElm);
+        this.appendChild(this.plusButton);
     }
 
     /**
@@ -66,7 +66,7 @@ class SpinBoxElement extends HTMLElement {
      * Get the input child element.
      */
     get input() {
-        return this.#inputElm;
+        return this.inputElm;
     }
 
     /**

@@ -10,25 +10,25 @@ import ToastElement from "./components/ToastElement.js";
  * Represents the controller of the cart page.
  */
 class Controller {
-    #cart;
-    #teddies;
-    #itemListElm;
-    #cartItemTemplateElm;
+    cart;
+    teddies;
+    itemListElm;
+    cartItemTemplateElm;
 
     /**
      * Creates a controller for the cart page.
      * @param {CartStorage} cart The cart storage management object.
      */
     constructor(cart) {
-        this.#cart = cart;
-        this.#itemListElm = document.getElementsByClassName("cart__item-list");
-        if (!this.#itemListElm || this.#itemListElm.length < 1) {
+        this.cart = cart;
+        this.itemListElm = document.getElementsByClassName("cart__item-list");
+        if (!this.itemListElm || this.itemListElm.length < 1) {
             throw new Error("cart__item-list not found");
         }
-        this.#itemListElm = this.#itemListElm[0];
+        this.itemListElm = this.itemListElm[0];
 
-        this.#cartItemTemplateElm = document.getElementById("cart-item__template");
-        if (!this.#cartItemTemplateElm) {
+        this.cartItemTemplateElm = document.getElementById("cart-item__template");
+        if (!this.cartItemTemplateElm) {
             throw new Error("cart-item__template not found");
         }
     }
@@ -43,7 +43,7 @@ class Controller {
             products.map(([id]) => {
                 return getTeddy(id)
                     .then((teddy) => {
-                        this.#teddies[id] = teddy;
+                        this.teddies[id] = teddy;
                     })
                     .catch((err) => {
                         let toast = new ToastElement();
@@ -62,11 +62,10 @@ class Controller {
         const generator = new TeddyCartItemGenerator();
         for (const [id, colors] of products) {
             for (const [color, count] of Object.entries(colors)) {
-                this.#itemListElm.appendChild(
+                this.itemListElm.appendChild(
                     generator.generate({
-                        teddy: this.#teddies[id],
-                        rootElm:
-                            this.#cartItemTemplateElm.content.firstElementChild.cloneNode(true),
+                        teddy: this.teddies[id],
+                        rootElm: this.cartItemTemplateElm.content.firstElementChild.cloneNode(true),
                         color,
                         count,
                     })
@@ -79,13 +78,13 @@ class Controller {
      * Connects the spinboxes and remove buttons to the appropriate callbacks
      */
     bindElements() {
-        for (let spin of this.#itemListElm.getElementsByTagName("spinbox-element")) {
+        for (let spin of this.itemListElm.getElementsByTagName("spinbox-element")) {
             spin.addEventListener("change", () => {
                 this.updateCart();
             });
         }
 
-        for (let button of this.#itemListElm.getElementsByClassName(
+        for (let button of this.itemListElm.getElementsByClassName(
             "cart-item__remove-item-button"
         )) {
             button.addEventListener("click", () => {
@@ -101,7 +100,7 @@ class Controller {
         let paragraph = document.createElement("p");
         paragraph.textContent = "Le panier est vide.";
         paragraph.classList.add("cart__item-list__empty-text");
-        this.#itemListElm.appendChild(paragraph);
+        this.itemListElm.appendChild(paragraph);
         document.getElementsByClassName("cart__order-button")[0].style.display = "none";
     }
 
@@ -110,13 +109,13 @@ class Controller {
      * products' change event to a callback to update the total price and the page.
      */
     initItemListElm() {
-        let products = Object.entries(this.#cart.products);
+        let products = Object.entries(this.cart.products);
         if (products.length === 0) {
             this.handleCartEmpty();
             return;
         }
 
-        this.#teddies = {};
+        this.teddies = {};
         this.getTeddies(products)
             .then(() => {
                 this.generateCartItems(products);
