@@ -3,6 +3,10 @@ spinbox-element {
 
     input {
         @apply rounded-lg bg-purple-200 py-2 px-4 text-center font-bold appearance-none w-full;
+
+        &[type="number"] {
+            -moz-appearance: textfield;
+        }
     }
 
     button:nth-of-type(1) {

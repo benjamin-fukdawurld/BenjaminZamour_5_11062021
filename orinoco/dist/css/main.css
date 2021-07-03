@@ -943,6 +943,10 @@ spinbox-element input {
   font-weight: 700;
 }
 
+spinbox-element input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 spinbox-element button:nth-of-type(1) {
   position: absolute;
   top: 0.5rem;
