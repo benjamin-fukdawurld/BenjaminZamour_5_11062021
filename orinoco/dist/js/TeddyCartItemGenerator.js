@@ -49,8 +49,9 @@ export default class TeddyCartItemGenerator extends AbstractTeddyGenerator {
     initRemoveButton(color) {
         let rootElm = this.componentProxy._;
         let cartStorage = new CartStorage();
+        const id = this.teddy._id;
         this.componentProxy["remove-item-button"].addEventListener("click", () => {
-            cartStorage.setProductCount(this.teddy._id, color, 0);
+            cartStorage.setProductCount(id, color, 0);
             document.getElementsByClassName("cart__item-list")[0].removeChild(rootElm);
         });
     }
