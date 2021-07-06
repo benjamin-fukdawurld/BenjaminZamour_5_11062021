@@ -1546,33 +1546,33 @@ spinbox-element button:nth-of-type(2) {
   padding-bottom: 0.5rem;
 }
 
-.order-form .personnal-info input[type="text"]:not(:focus):invalid, .order-form .personnal-info input[type="email"]:not(:focus):invalid, .order-form .personnal-info input[type="month"]:not(:focus):invalid, .order-form .pay-info input[type="text"]:not(:focus):invalid, .order-form .pay-info input[type="email"]:not(:focus):invalid, .order-form .pay-info input[type="month"]:not(:focus):invalid{
+.order-form .personnal-info input[type="text"]:valid, .order-form .personnal-info input[type="email"]:valid, .order-form .personnal-info input[type="month"]:valid, .order-form .pay-info input[type="text"]:valid, .order-form .pay-info input[type="email"]:valid, .order-form .pay-info input[type="month"]:valid{
+  border-width: 2px;
+  border-style: solid;
+  --tw-border-opacity: 1;
+  border-color: rgba(110, 231, 183, var(--tw-border-opacity));
+}
+
+.order-form .personnal-info input[type="text"]:not(:focus):invalid, .order-form .personnal-info input[type="text"][data-valid="false"], .order-form .personnal-info input[type="email"]:not(:focus):invalid, .order-form .personnal-info input[type="email"][data-valid="false"], .order-form .personnal-info input[type="month"]:not(:focus):invalid, .order-form .personnal-info input[type="month"][data-valid="false"], .order-form .pay-info input[type="text"]:not(:focus):invalid, .order-form .pay-info input[type="text"][data-valid="false"], .order-form .pay-info input[type="email"]:not(:focus):invalid, .order-form .pay-info input[type="email"][data-valid="false"], .order-form .pay-info input[type="month"]:not(:focus):invalid, .order-form .pay-info input[type="month"][data-valid="false"]{
   border-width: 2px;
   border-style: solid;
   --tw-border-opacity: 1;
   border-color: rgba(252, 165, 165, var(--tw-border-opacity));
 }
 
-.order-form .personnal-info input[type="text"]:not(:focus):invalid:not(:-moz-placeholder-shown), .order-form .personnal-info input[type="email"]:not(:focus):invalid:not(:-moz-placeholder-shown), .order-form .personnal-info input[type="month"]:not(:focus):invalid:not(:-moz-placeholder-shown), .order-form .pay-info input[type="text"]:not(:focus):invalid:not(:-moz-placeholder-shown), .order-form .pay-info input[type="email"]:not(:focus):invalid:not(:-moz-placeholder-shown), .order-form .pay-info input[type="month"]:not(:focus):invalid:not(:-moz-placeholder-shown){
+.order-form .personnal-info input[type="text"]:not(:focus):invalid:not(:-moz-placeholder-shown), .order-form .personnal-info input[type="text"][data-valid="false"]:not(:-moz-placeholder-shown), .order-form .personnal-info input[type="email"]:not(:focus):invalid:not(:-moz-placeholder-shown), .order-form .personnal-info input[type="email"][data-valid="false"]:not(:-moz-placeholder-shown), .order-form .personnal-info input[type="month"]:not(:focus):invalid:not(:-moz-placeholder-shown), .order-form .personnal-info input[type="month"][data-valid="false"]:not(:-moz-placeholder-shown), .order-form .pay-info input[type="text"]:not(:focus):invalid:not(:-moz-placeholder-shown), .order-form .pay-info input[type="text"][data-valid="false"]:not(:-moz-placeholder-shown), .order-form .pay-info input[type="email"]:not(:focus):invalid:not(:-moz-placeholder-shown), .order-form .pay-info input[type="email"][data-valid="false"]:not(:-moz-placeholder-shown), .order-form .pay-info input[type="month"]:not(:focus):invalid:not(:-moz-placeholder-shown), .order-form .pay-info input[type="month"][data-valid="false"]:not(:-moz-placeholder-shown){
   --tw-bg-opacity: 1;
   background-color: rgba(254, 202, 202, var(--tw-bg-opacity));
 }
 
-.order-form .personnal-info input[type="text"]:not(:focus):invalid:not(:-ms-input-placeholder), .order-form .personnal-info input[type="email"]:not(:focus):invalid:not(:-ms-input-placeholder), .order-form .personnal-info input[type="month"]:not(:focus):invalid:not(:-ms-input-placeholder), .order-form .pay-info input[type="text"]:not(:focus):invalid:not(:-ms-input-placeholder), .order-form .pay-info input[type="email"]:not(:focus):invalid:not(:-ms-input-placeholder), .order-form .pay-info input[type="month"]:not(:focus):invalid:not(:-ms-input-placeholder){
+.order-form .personnal-info input[type="text"]:not(:focus):invalid:not(:-ms-input-placeholder), .order-form .personnal-info input[type="text"][data-valid="false"]:not(:-ms-input-placeholder), .order-form .personnal-info input[type="email"]:not(:focus):invalid:not(:-ms-input-placeholder), .order-form .personnal-info input[type="email"][data-valid="false"]:not(:-ms-input-placeholder), .order-form .personnal-info input[type="month"]:not(:focus):invalid:not(:-ms-input-placeholder), .order-form .personnal-info input[type="month"][data-valid="false"]:not(:-ms-input-placeholder), .order-form .pay-info input[type="text"]:not(:focus):invalid:not(:-ms-input-placeholder), .order-form .pay-info input[type="text"][data-valid="false"]:not(:-ms-input-placeholder), .order-form .pay-info input[type="email"]:not(:focus):invalid:not(:-ms-input-placeholder), .order-form .pay-info input[type="email"][data-valid="false"]:not(:-ms-input-placeholder), .order-form .pay-info input[type="month"]:not(:focus):invalid:not(:-ms-input-placeholder), .order-form .pay-info input[type="month"][data-valid="false"]:not(:-ms-input-placeholder){
   --tw-bg-opacity: 1;
   background-color: rgba(254, 202, 202, var(--tw-bg-opacity));
 }
 
-.order-form .personnal-info input[type="text"]:not(:focus):invalid:not(:placeholder-shown), .order-form .personnal-info input[type="email"]:not(:focus):invalid:not(:placeholder-shown), .order-form .personnal-info input[type="month"]:not(:focus):invalid:not(:placeholder-shown), .order-form .pay-info input[type="text"]:not(:focus):invalid:not(:placeholder-shown), .order-form .pay-info input[type="email"]:not(:focus):invalid:not(:placeholder-shown), .order-form .pay-info input[type="month"]:not(:focus):invalid:not(:placeholder-shown){
+.order-form .personnal-info input[type="text"]:not(:focus):invalid:not(:placeholder-shown), .order-form .personnal-info input[type="text"][data-valid="false"]:not(:placeholder-shown), .order-form .personnal-info input[type="email"]:not(:focus):invalid:not(:placeholder-shown), .order-form .personnal-info input[type="email"][data-valid="false"]:not(:placeholder-shown), .order-form .personnal-info input[type="month"]:not(:focus):invalid:not(:placeholder-shown), .order-form .personnal-info input[type="month"][data-valid="false"]:not(:placeholder-shown), .order-form .pay-info input[type="text"]:not(:focus):invalid:not(:placeholder-shown), .order-form .pay-info input[type="text"][data-valid="false"]:not(:placeholder-shown), .order-form .pay-info input[type="email"]:not(:focus):invalid:not(:placeholder-shown), .order-form .pay-info input[type="email"][data-valid="false"]:not(:placeholder-shown), .order-form .pay-info input[type="month"]:not(:focus):invalid:not(:placeholder-shown), .order-form .pay-info input[type="month"][data-valid="false"]:not(:placeholder-shown){
   --tw-bg-opacity: 1;
   background-color: rgba(254, 202, 202, var(--tw-bg-opacity));
-}
-
-.order-form .personnal-info input[type="text"]:valid, .order-form .personnal-info input[type="email"]:valid, .order-form .personnal-info input[type="month"]:valid, .order-form .pay-info input[type="text"]:valid, .order-form .pay-info input[type="email"]:valid, .order-form .pay-info input[type="month"]:valid{
-  border-width: 2px;
-  border-style: solid;
-  --tw-border-opacity: 1;
-  border-color: rgba(110, 231, 183, var(--tw-border-opacity));
 }
 
 .order-form .personnal-info {

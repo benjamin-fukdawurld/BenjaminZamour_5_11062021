@@ -107,10 +107,25 @@ class Controller {
      */
     init() {
         this.form.addEventListener("change", () => {
-            this.nextButton.disabled = !this.form.checkValidity();
             // we may check the email with a regex to avoid having email like "test@domain"
             // considered as a valid email adress but technically it is. RFC 2822 does not specify
             // restriction on top level domain
+            const checkEmail = () => {
+                const emailParts = this.form.email.value.split("@");
+                if (emailParts.length < 2) {
+                    return false;
+                }
+
+                const domainName = emailParts[1];
+                const domainParts = domainName.split(".");
+                const result =
+                    domainParts.length > 1 && domainParts[domainParts.length - 1].length > 1;
+
+                this.form.email.setAttribute("data-valid", `${result}`);
+                return result;
+            };
+
+            this.nextButton.disabled = !(this.form.checkValidity() && checkEmail());
         });
 
         this.nextButton.addEventListener("click", (event) => {
