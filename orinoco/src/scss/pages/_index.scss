@@ -1,9 +1,0 @@
-@import "./components/teddy-card";
-
-.product-list {
-    @apply flex flex-wrap justify-start items-start;
-
-    li {
-        @apply px-4;
-    }
-}
